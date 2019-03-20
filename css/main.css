@@ -1723,15 +1723,19 @@ button::-moz-focus-inner, input::-moz-focus-inner {
  * ------------------------------------------------------------------- */
 
 .s-home {
-    width: 100%;
-    height: 100%;
-    max-width: 100% ;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important ;
+    max-height: 100% !important;
     min-width: 300px;
-    background-size: cover;
     background-repeat: no-repeat;
     background-image: url("../images/mypic.JPG");
     background-color: transparent;
-   background-position:center center;
+   background-position:center;
+   -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
    background-attachment: fixed;
    display: inline-block;
     font-size: 0;
