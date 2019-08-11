@@ -346,19 +346,13 @@
     
                 var sLoader = $('.submit-loader');
     $('#image-loader').fadeIn();
-
-      var contactName = $('#contactForm #contactName').val();
-      var contactEmail = $('#contactForm #contactEmail').val();
-      var contactSubject = $('#contactForm #contactSubject').val();
-      var contactMessage = $('#contactForm #contactMessage').val();
-
-      var data = 'contactName=' + contactName + '&contactEmail=' + contactEmail +
-               '&contactSubject=' + contactSubject + '&contactMessage=' + contactMessage;
+    form.preventDefault();
+    form_data = $(form).serialize();
                 $.ajax({
     
                     type: "POST",
                     url: "inc/sendEmail.php",
-                    data: data,
+                    data: form_data,
                     beforeSend: function() { 
     
                         sLoader.slideDown("slow");
