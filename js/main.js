@@ -346,7 +346,6 @@
     
                 var sLoader = $('.submit-loader');
     $('#image-loader').fadeIn();
-    form.preventDefault();
     form_data = $(form).serialize();
                 $.ajax({
     

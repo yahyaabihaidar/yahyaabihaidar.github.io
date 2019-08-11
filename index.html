@@ -340,20 +340,20 @@ ensuring the items get allocated to the correct User Id in our system and you in
 
         <div class="row contact__main">
             <div class="col-eight tab-full contact__form">
-                <form  name="contactForm" id="contactForm" method="post" enctype="text/plain">
+                <form action="http://formspree.io/yahya.abihaidar98@gmail.com" method="POST" enctype="text/plain">
                     <fieldset>
     
                         <div class="form-field">
-                            <input name="contactName" type="text" id="contactName" placeholder="Name" value="" minlength="2" required="" aria-required="true" class="full-width">
+                            <input name="name" type="text" placeholder="Name" value="" minlength="2" required="" aria-required="true" class="full-width">
                         </div>
                         <div class="form-field">
-                            <input name="contactEmail" type="email" id="contactEmail" placeholder="Email" value="" required="" aria-required="true" class="full-width">
+                            <input  name="_replyto" type="email" placeholder="Email" value="" required="" aria-required="true" class="full-width">
                         </div>
                         <div class="form-field">
-                            <input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" value="" class="full-width">
+                            <input name="subject" type="text" id="contactSubject" placeholder="Subject" value="" class="full-width">
                         </div>
                         <div class="form-field">
-                            <textarea name="contactMessage" id="contactMessage" placeholder="message" rows="10" cols="50" required="" aria-required="true" class="full-width"></textarea>
+                            <textarea name="body" placeholder="message" rows="10" cols="50" required="" aria-required="true" class="full-width"></textarea>
                         </div>
                         <div class="form-field">
                             <button class="full-width btn--primary">Submit</button>
