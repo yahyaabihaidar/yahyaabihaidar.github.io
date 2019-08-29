@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/vendor.css">
     <link rel="stylesheet" href="css/main.css">
-
+    <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/modernizr.js"></script>
     <script src="js/pace.min.js"></script>
 
@@ -344,16 +344,16 @@ ensuring the items get allocated to the correct User Id in our system and you in
                     <fieldset>
     
                         <div class="form-field">
-                            <input name="contactName" type="text" id="contactName" placeholder="Name" value="" minlength="2" required="" aria-required="true" class="full-width">
+                            <input name="contactName" type="text" id="contactName" placeholder="Name" value="" minlength="2"  class="full-width" required>
                         </div>
                         <div class="form-field">
-                            <input name="contactEmail" type="email" id="contactEmail" placeholder="Email" value="" required="" aria-required="true" class="full-width">
+                            <input name="contactEmail" type="email" id="contactEmail" placeholder="Email" value=""   class="full-width" required>
                         </div>
                         <div class="form-field">
-                            <input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" value="" class="full-width">
+                            <input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" value="" class="full-width" required>
                         </div>
                         <div class="form-field">
-                            <textarea name="contactMessage" id="contactMessage" placeholder="message" rows="10" cols="50" required="" aria-required="true" class="full-width"></textarea>
+                            <textarea name="contactMessage" id="contactMessage" placeholder="Message" rows="10" cols="50"   class="full-width" required></textarea>
                         </div>
                         <div class="form-field">
                             <button type="submit" class="full-width btn--primary">Submit</button>
@@ -505,7 +505,16 @@ document.getElementById('contactForm').addEventListener('submit', submitForm);
 // Submit form
 function submitForm(e){
   e.preventDefault();
-  
+  var form = document.getElementById('contactForm');
+  var isValidForm = form.checkValidity();
+  console.log(isValidForm);
+  if(!isValidForm){
+      return
+  }
+    
+    
+  $('#contactForm').fadeOut();
+    $('.message-success').fadeIn();
   //Get value
   var name = getInputVal('contactName');
   var email = getInputVal('contactEmail');
@@ -522,11 +531,14 @@ function submitForm(e){
   // Hide alert after 3 seconds
   setTimeout(function(){
     document.querySelector('.message-success').style.display = 'none';
+    $('#contactForm').fadeIn();
   },3000);
 
   // Clear form
   document.getElementById('contactForm').reset();
 }
+
+
 
 // Function to get form value
 function getInputVal(id){
@@ -537,14 +549,14 @@ function getInputVal(id){
 function saveMessage(name,email,subject,message){
   var newMessageRef = messagesRef.push();
   newMessageRef.set({
-    name: firstname,
+    name: name,
     email: email,
     subject:subject,
     message: message,
   });
 }
 </script>
-    <script src="js/jquery-3.2.1.min.js"></script>
+    
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
 
