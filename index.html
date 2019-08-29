@@ -340,7 +340,7 @@ ensuring the items get allocated to the correct User Id in our system and you in
 
         <div class="row contact__main">
             <div class="col-eight tab-full contact__form">
-                <form  name="contactForm" id="contactForm" method="post" enctype="text/plain">
+                <form id="contactForm">
                     <fieldset>
     
                         <div class="form-field">
@@ -356,15 +356,15 @@ ensuring the items get allocated to the correct User Id in our system and you in
                             <textarea name="contactMessage" id="contactMessage" placeholder="message" rows="10" cols="50" required="" aria-required="true" class="full-width"></textarea>
                         </div>
                         <div class="form-field">
-                            <button class="full-width btn--primary">Submit</button>
-                            <div class="submit-loader">
+                            <button type="submit" class="full-width btn--primary">Submit</button>
+                            <!-- <div class="submit-loader">
                                 <div class="text-loader">Sending...</div>
                                 <div class="s-loader">
                                     <div class="bounce1"></div>
                                     <div class="bounce2"></div>
                                     <div class="bounce3"></div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
         
                         </fieldset>
@@ -477,9 +477,73 @@ ensuring the items get allocated to the correct User Id in our system and you in
 
     </div>
 
-    <div id="preloader">
-        <div id="loader"></div>
-    </div>
+     <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+  var config  = {
+    apiKey: "AIzaSyAGXOas0XgytKvjHwNbztnN3G4d9UKztlQ",
+    authDomain: "contactform-667aa.firebaseapp.com",
+    databaseURL: "https://contactform-667aa.firebaseio.com",
+    projectId: "contactform-667aa",
+    storageBucket: "",
+    messagingSenderId: "253288578684",
+    appId: "1:253288578684:web:16649492684c1905"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(config);
+  // Reference messages collection
+var messagesRef = firebase.database().ref('messages');
+ 
+ 
+// Listen for form submit
+document.getElementById('contactForm').addEventListener('submit', submitForm);
+// Submit form
+function submitForm(e){
+  e.preventDefault();
+  
+  //Get value
+  var name = getInputVal('contactName');
+  var email = getInputVal('contactEmail');
+  // var gender = $("input[name='gender']:checked").val();
+  var subject = getInputVal('contactSubject');
+  var message = getInputVal('contactMessage');
+
+  // Save message);
+  saveMessage(name,email,subject,message);
+
+  // Show alert
+  document.querySelector('.message-success').style.display = 'block';
+
+  // Hide alert after 3 seconds
+  setTimeout(function(){
+    document.querySelector('.message-success').style.display = 'none';
+  },3000);
+
+  // Clear form
+  document.getElementById('contactForm').reset();
+}
+
+// Function to get form value
+function getInputVal(id){
+  return document.getElementById(id).value;
+}
+
+// Save message to firebase
+function saveMessage(name,email,subject,message){
+  var newMessageRef = messagesRef.push();
+  newMessageRef.set({
+    name: firstname,
+    email: email,
+    subject:subject,
+    message: message,
+  });
+}
+</script>
     <script src="js/jquery-3.2.1.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
